@@ -3,9 +3,8 @@ package br.com.caelum.financas.jpa;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import br.com.caelum.financas.jpa.util.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
 public class TesteJPA {
@@ -36,10 +35,9 @@ public class TesteJPA {
 		/**
 		 * Usando MySQL
 		 */
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("contas-mysql");
 
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = new JPAUtil().getEntityManager();
+
 		em.getTransaction().begin();
 
 		em.persist(conta);
