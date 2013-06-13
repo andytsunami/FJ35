@@ -20,11 +20,17 @@ public class TesteConsultaJPQL {
 		Conta conta = new Conta();
 		conta.setId(1);
 
-		Query query = em
-				.createQuery("select m from Movimentacao m where m.conta = ?1 and m.tipoMovimentacao = ?2");
+		// Query query = em
+		// .createQuery("select m from Movimentacao m where m.conta = ?1 and m.tipoMovimentacao = ?2");
+		//
+		// query.setParameter(1, conta);
+		// query.setParameter(2, TipoMovimentacao.ENTRADA);
 
-		query.setParameter(1, conta);
-		query.setParameter(2, TipoMovimentacao.ENTRADA);
+		Query query = em
+				.createQuery("select m from Movimentacao m where m.conta = :conta and m.tipoMovimentacao = :tipo order by m.valor");
+
+		query.setParameter("conta", conta);
+		query.setParameter("tipo", TipoMovimentacao.SAIDA);
 
 		@SuppressWarnings("unchecked")
 		List<Movimentacao> movimentacoes = query.getResultList();
