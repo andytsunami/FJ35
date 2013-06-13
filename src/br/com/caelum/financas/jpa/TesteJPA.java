@@ -1,9 +1,8 @@
 package br.com.caelum.financas.jpa;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import br.com.caelum.financas.jpa.util.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
 public class TesteJPA {
@@ -21,21 +20,20 @@ public class TesteJPA {
 		 */
 
 		// EntityManagerFactory emf = Persistence
-		// 		.createEntityManagerFactory("contas-hsqldb");
+		// .createEntityManagerFactory("contas-hsqldb");
 
 		/**
 		 * Usando PostgreSQL
 		 */
 		// EntityManagerFactory emf = Persistence
-		// 		.createEntityManagerFactory("contas-postgres");
+		// .createEntityManagerFactory("contas-postgres");
 
 		/**
 		 * Usando MySQL
 		 */
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("contas-mysql");
 
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = new JPAUtil().getEntityManager();
+
 		em.getTransaction().begin();
 
 		em.persist(conta);
