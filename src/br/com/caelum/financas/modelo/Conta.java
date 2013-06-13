@@ -1,5 +1,7 @@
 package br.com.caelum.financas.modelo;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Conta {
 	private String banco;
 	private String agencia;
 	private String numero;
+	private BigDecimal saldo;
 
 	public Integer getId() {
 		return id;
@@ -57,4 +60,13 @@ public class Conta {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+	public BigDecimal getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
+	}
+
 }
