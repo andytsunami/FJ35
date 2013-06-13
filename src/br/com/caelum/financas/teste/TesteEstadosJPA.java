@@ -1,5 +1,7 @@
 package br.com.caelum.financas.teste;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 
 import br.com.caelum.financas.jpa.util.JPAUtil;
@@ -14,6 +16,12 @@ public class TesteEstadosJPA {
 		em.getTransaction().begin();
 
 		Conta conta = em.find(Conta.class, 1);
+
+		System.out.println(conta.getTitular());
+
+		System.out.println("Mudando o nome do titular");
+
+		conta.setTitular("Maria dos " + new Date().toString());
 
 		System.out.println(conta.getTitular());
 
