@@ -3,7 +3,7 @@ package br.com.caelum.financas.teste;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.caelum.financas.modelo.Conta;
 import br.com.caelum.financas.util.JPAUtil;
@@ -15,12 +15,14 @@ public class TesteConsultaFuncaoMax {
 
 		Conta conta = em.find(Conta.class, 1);
 
-		Query query = em
-				.createQuery("select max(m.valor) from Movimentacao m where m.conta = :conta");
+		TypedQuery<BigDecimal> query = em
+				.createQuery(
+						"select max(m.valor) from Movimentacao m where m.conta = :conta",
+						BigDecimal.class);
 
 		query.setParameter("conta", conta);
 
-		BigDecimal quant = (BigDecimal) query.getSingleResult();
+		BigDecimal quant = query.getSingleResult();
 
 		System.out.println(quant);
 

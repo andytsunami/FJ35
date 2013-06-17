@@ -1,7 +1,7 @@
 package br.com.caelum.financas.teste;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.caelum.financas.modelo.Conta;
 import br.com.caelum.financas.util.JPAUtil;
@@ -13,12 +13,13 @@ public class TesteConsultaFuncaoCount {
 
 		Conta conta = em.find(Conta.class, 1);
 
-		Query query = em
-				.createQuery("select count(m) from Movimentacao m where m.conta = :conta");
+		TypedQuery<Long> query = em.createQuery(
+				"select count(m) from Movimentacao m where m.conta = :conta",
+				Long.class);
 
 		query.setParameter("conta", conta);
 
-		Long quant = (Long) query.getSingleResult();
+		Long quant = query.getSingleResult();
 
 		System.out.println(quant);
 
