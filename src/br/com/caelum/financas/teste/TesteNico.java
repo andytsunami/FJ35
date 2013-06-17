@@ -11,8 +11,8 @@ public class TesteNico {
 		EntityManager em = new JPAUtil().getEntityManager();
 		em.getTransaction().begin();
 
-		Conta conta = em.find(Conta.class, 8);
-		// Conta conta = em.getReference(Conta.class, 1);
+		// Conta conta = em.find(Conta.class, 8);
+		Conta conta = em.getReference(Conta.class, 1);
 		em.close();
 		System.out.println(conta.getTitular());
 
