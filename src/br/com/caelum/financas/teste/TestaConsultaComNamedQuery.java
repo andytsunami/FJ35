@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import br.com.caelum.financas.dao.MovimentacaoDao;
 import br.com.caelum.financas.modelo.Conta;
+import br.com.caelum.financas.modelo.TipoMovimentacao;
 import br.com.caelum.financas.util.JPAUtil;
 
 public class TestaConsultaComNamedQuery {
@@ -18,6 +19,9 @@ public class TestaConsultaComNamedQuery {
 		conta.setId(1);
 
 		System.out.println(dao.totalDeMovimentacoes(conta));
+
+		System.out.println(dao.mediaDaContaPeloTipoMovimentacao(conta,
+				TipoMovimentacao.SAIDA));
 
 	}
 

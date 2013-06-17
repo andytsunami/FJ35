@@ -36,4 +36,16 @@ public class MovimentacaoDao {
 		return query.getSingleResult();
 	}
 
+	public Double mediaDaContaPeloTipoMovimentacao(Conta conta,
+			TipoMovimentacao tipoMovimentacao) {
+		TypedQuery<Double> query = em.createNamedQuery(
+				"mediaDaContaPeloTipoMovimentacao", Double.class);
+
+		query.setParameter("conta", conta);
+		query.setParameter("tipo", tipoMovimentacao);
+
+		return query.getSingleResult();
+
+	}
+
 }

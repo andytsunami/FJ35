@@ -10,11 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@NamedQuery(name = "totalDeMovimentacoes", query = "select count(m) from Movimentacao m where m.conta = :conta")
+@NamedQueries({
+		@NamedQuery(name = "mediaDaContaPeloTipoMovimentacao", query = "select avg(m.valor) from Movimentacao m where m.conta=:conta and m.tipoMovimentacao = :tipo"),
+		@NamedQuery(name = "totalDeMovimentacoes", query = "select count(m) from Movimentacao m where m.conta = :conta") })
 @Entity
 public class Movimentacao {
 
