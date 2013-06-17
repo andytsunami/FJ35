@@ -28,4 +28,12 @@ public class MovimentacaoDao {
 
 	}
 
+	public Long totalDeMovimentacoes(Conta conta) {
+		TypedQuery<Long> query = em.createNamedQuery("totalDeMovimentacoes",
+				Long.class);
+		query.setParameter("conta", conta);
+
+		return query.getSingleResult();
+	}
+
 }
